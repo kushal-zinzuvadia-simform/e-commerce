@@ -15,7 +15,7 @@ export const Header = ({ searchQuery, onSearchChange }: HeaderProps) => {
       }}
       role="banner"
     >
-      <div className="mx-auto grid max-w-350 grid-cols-[auto_1fr_auto] items-center gap-6 px-6 py-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6 px-6 py-4">
         {/* Logo */}
         <div className="flex items-center gap-3">
           <img src="/icons/logo.svg" alt="ShopSphere" className="h-8 w-8" />

@@ -1,4 +1,5 @@
 import type { Product } from '../../types/Product';
+import { ProductCard } from '../ProductCard/ProductCard';
 
 interface ProductGridProps {
   products: Product[];
@@ -8,24 +9,21 @@ export const ProductGrid = ({ products }: ProductGridProps) => {
   if (products.length === 0) {
     return (
       <div
-        className="flex flex-col items-center justify-center gap-4 py-24 px-6 text-center animate-fade-in"
+        className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center"
         role="status"
       >
-        <div aria-hidden="true">
-          <img
-            src="/icons/search-empty.svg"
-            alt=""
-            className="w-16 h-16 opacity-30"
-          />
-        </div>
+        <img
+          src="/icons/search-empty.svg"
+          alt=""
+          className="mb-6 h-14 w-14 opacity-30"
+        />
 
-        <h3 className="text-xl font-semibold text-[#0f172a]">
-          No Products Found
+        <h3 className="mb-2 text-xl font-semibold text-slate-900">
+          No products found
         </h3>
 
-        <p className="text-sm text-[#475569] max-w-sm leading-relaxed">
-          We couldn't find any products matching your search term. Try adjusting
-          your spelling or filters.
+        <p className="max-w-md text-sm leading-relaxed text-slate-500">
+          Try searching with a different keyword or browse all products.
         </p>
       </div>
     );
@@ -33,8 +31,16 @@ export const ProductGrid = ({ products }: ProductGridProps) => {
 
   return (
     <section
-      className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6"
       aria-label="Products list"
-    ></section>
+      className="
+        grid
+        grid-cols-[repeat(auto-fill,minmax(280px,1fr))]
+        gap-8
+      "
+    >
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </section>
   );
 };
