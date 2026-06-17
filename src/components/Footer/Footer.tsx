@@ -2,7 +2,6 @@ export const Footer = () => {
   return (
     <footer
       className="
-        mt-16
         border-t border-slate-200
         bg-white
       "

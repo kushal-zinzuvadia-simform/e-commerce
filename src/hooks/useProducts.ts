@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import { fetchProducts } from '../api/productApi';
 import type { Product } from '../types/Product';
 

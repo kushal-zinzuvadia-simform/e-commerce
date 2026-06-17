@@ -15,7 +15,4 @@ export interface Product {
   creationAt?: string;
   updatedAt?: string;
   category: Category;
-  // Locally computed properties for pricing demo
-  discountPercentage?: number;
-  discountedPrice?: number;
 }

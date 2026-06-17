@@ -19,6 +19,7 @@ export const Sidebar = () => {
         <button
           className="
             text-xs font-medium
+            cursor-pointer
             text-slate-400
             transition-colors
             hover:text-slate-600
@@ -28,6 +29,41 @@ export const Sidebar = () => {
         </button>
       </div>
 
+      <div className="mb-6">
+        <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+          Sort by
+        </h3>
+
+        <div className="space-y-2">
+          {[
+            'Relevance',
+            'Price: Low to High',
+            'Price: High to Low',
+            'Latest',
+          ].map((option, index) => (
+            <label
+              key={option}
+              className="
+                flex cursor-pointer items-center gap-3
+                rounded-xl px-3 py-2
+                text-sm text-slate-600
+                transition
+                hover:bg-slate-50
+              "
+            >
+              <input
+                type="radio"
+                name="sort"
+                defaultChecked={index === 0}
+                className="h-4 w-4 border-slate-300"
+              />
+              {option}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Category */}
       <div className="mb-6">
         <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
           Category
@@ -55,6 +91,7 @@ export const Sidebar = () => {
         </div>
       </div>
 
+      {/* Price */}
       <div className="mb-6">
         <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
           Price
@@ -66,12 +103,12 @@ export const Sidebar = () => {
               <label
                 key={range}
                 className="
-                flex cursor-pointer items-center gap-3
-                rounded-xl px-3 py-2
-                text-sm text-slate-600
-                transition
-                hover:bg-slate-50
-              "
+                  flex cursor-pointer items-center gap-3
+                  rounded-xl px-3 py-2
+                  text-sm text-slate-600
+                  transition
+                  hover:bg-slate-50
+                "
               >
                 <input
                   type="radio"
@@ -82,30 +119,6 @@ export const Sidebar = () => {
               </label>
             )
           )}
-        </div>
-      </div>
-
-      <div className="mb-2">
-        <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-          Discount
-        </h3>
-
-        <div className="space-y-2">
-          {['10% or more', '20% or more', '30% or more'].map((discount) => (
-            <label
-              key={discount}
-              className="
-                flex cursor-pointer items-center gap-3
-                rounded-xl px-3 py-2
-                text-sm text-slate-600
-                transition
-                hover:bg-slate-50
-              "
-            >
-              <input type="checkbox" className="h-4 w-4 border-slate-300" />
-              {discount}
-            </label>
-          ))}
         </div>
       </div>
     </aside>

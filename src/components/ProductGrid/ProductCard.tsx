@@ -9,15 +9,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, onClick }: ProductCardProps) => {
-  const {
-    id,
-    title,
-    description,
-    price,
-    discountPercentage = 0,
-    discountedPrice = price,
-    images,
-  } = product;
+  const { id, title, description, price, images } = product;
 
   const imageUrl = getCleanImageUrl(images);
   const isAvailable = id % 7 !== 0;
@@ -27,16 +19,16 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
     <article
       onClick={onClick}
       className="
-    group
-    flex h-full flex-col overflow-hidden
-    rounded-3xl
-    border border-slate-200
-    bg-white
-    transition-all duration-300
-    hover:-translate-y-1
-    hover:border-slate-300
-    hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]
-  "
+        group
+        flex h-full flex-col overflow-hidden
+        rounded-3xl
+        border border-slate-200
+        bg-white
+        transition-all duration-300
+        hover:-translate-y-1
+        hover:border-slate-300
+        hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]
+      "
       role="button"
       tabIndex={0}
       aria-label={`View details for ${title}`}
@@ -56,23 +48,6 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
             group-hover:scale-[1.03]
             "
         />
-
-        {discountPercentage > 0 && (
-          <span
-            className="
-                absolute left-4 top-4
-                rounded-full
-                border border-rose-200
-                bg-white/90
-                px-3 py-1
-                text-xs font-medium
-                text-rose-600
-                backdrop-blur
-            "
-          >
-            -{discountPercentage}%
-          </span>
-        )}
       </div>
 
       {/* Content */}
@@ -97,7 +72,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
             font-semibold
             leading-snug
             text-slate-900
-            "
+          "
         >
           {title}
         </h3>
@@ -109,7 +84,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
             text-sm
             leading-6
             text-slate-500
-        "
+          "
         >
           {truncateText(description)}
         </p>
@@ -118,14 +93,8 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
         <div className="mt-auto pt-6">
           <div className="flex items-end justify-between">
             <div>
-              {discountPercentage > 0 && (
-                <p className="text-sm text-slate-400 line-through">
-                  {formatCurrency(price)}
-                </p>
-              )}
-
               <p className="text-2xl font-semibold tracking-tight text-slate-900">
-                {formatCurrency(discountedPrice)}
+                {formatCurrency(price)}
               </p>
             </div>
 
