@@ -5,9 +5,10 @@ import { truncateText } from '../../utils/textUtils';
 
 interface ProductCardProps {
   product: Product;
+  onClick?: () => void;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const {
     id,
     title,
@@ -24,6 +25,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <article
+      onClick={onClick}
       className="
     group
     flex h-full flex-col overflow-hidden
