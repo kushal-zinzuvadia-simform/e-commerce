@@ -1,65 +1,46 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { fetchProducts } from '../api/productApi';
 import type { Product } from '../types/Product';
 
 export const useProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isMountedRef = useRef(true);
 
-  const refetch = useCallback(async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const data = await fetchProducts();
-
-      setProducts(data);
+      if (isMountedRef.current) {
+        setProducts(data);
+      }
     } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError('An unexpected error occurred while fetching products.');
+      if (isMountedRef.current) {
+        setError(
+          err instanceof Error ? err.message : 'An unexpected error occurred.'
+        );
       }
     } finally {
-      setLoading(false);
+      if (isMountedRef.current) {
+        setLoading(false);
+      }
     }
   }, []);
 
   useEffect(() => {
-    let isMounted = true;
+    isMountedRef.current = true;
 
-    const loadInitialProducts = async () => {
-      try {
-        const data = await fetchProducts();
-        if (!isMounted) return;
-
-        setProducts(data);
-      } catch (err) {
-        if (!isMounted) return;
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('An unexpected error occurred while fetching products.');
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    loadInitialProducts();
+    (async () => {
+      await load();
+    })();
 
     return () => {
-      isMounted = false;
+      isMountedRef.current = false;
     };
-  }, []);
+  }, [load]);
 
-  return {
-    products,
-    loading,
-    error,
-    refetch,
-  };
+  return { products, loading, error, refetch: load };
 };

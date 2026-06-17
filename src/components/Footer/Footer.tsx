@@ -47,6 +47,7 @@ export const Footer = () => {
             <a
               href="https://www.google.com/maps"
               target="_blank"
+              rel="noopener noreferrer"
               className="
                 inline-block mt-3
                 text-sm font-medium text-slate-700

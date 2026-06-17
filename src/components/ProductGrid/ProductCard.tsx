@@ -1,7 +1,6 @@
 import { FALLBACK_IMAGE_URL, getCleanImageUrl } from '../../utils/imageUtils';
 import { formatCurrency } from '../../utils/priceUtils';
 import type { Product } from '../../types/Product';
-import { truncateText } from '../../utils/textUtils';
 
 interface ProductCardProps {
   product: Product;
@@ -18,6 +17,9 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
   return (
     <article
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onClick();
+      }}
       className="
         group
         flex h-full flex-col overflow-hidden
@@ -86,7 +88,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
             text-slate-500
           "
         >
-          {truncateText(description)}
+          {description}
         </p>
 
         {/* Footer */}
