@@ -9,7 +9,7 @@ export const Footer = () => {
             </h3>
 
             <p className="text-sm text-slate-500 leading-6">
-              © {new Date().getFullYear()} ShopSphere. All rights reserved.
+              &copy; {new Date().getFullYear()} ShopSphere. All rights reserved.
             </p>
           </div>
 

@@ -19,7 +19,7 @@ export const ProductDetail = ({ product, onBack }: ProductDetailProps) => {
         onClick={onBack}
         className="mb-6 text-sm font-medium text-slate-500 transition hover:text-slate-900"
       >
-        ← Back to products
+        &larr; Back to products
       </button>
 
       <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">

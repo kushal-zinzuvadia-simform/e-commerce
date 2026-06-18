@@ -4,7 +4,7 @@ import { fetchProducts } from '../api/productApi';
 import type { Product } from '../types/Product';
 
 export const useProducts = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Array<Product>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const isMountedRef = useRef(true);

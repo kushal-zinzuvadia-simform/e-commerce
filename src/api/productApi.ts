@@ -2,7 +2,7 @@ import type { Product } from '../types/Product';
 
 const BASE_URL = 'https://api.escuelajs.co/api/v1';
 
-export const fetchProducts = async (): Promise<Product[]> => {
+export const fetchProducts = async (): Promise<Array<Product>> => {
   const response = await fetch(`${BASE_URL}/products`);
 
   if (!response.ok) {

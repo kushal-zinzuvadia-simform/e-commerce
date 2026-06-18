@@ -8,7 +8,7 @@ interface HeaderProps {
 export const Header = ({ searchQuery, onSearchChange }: HeaderProps) => {
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b backdrop-blur-md shadow-sm"
+      className="sticky top-0 z-10 w-full border-b backdrop-blur-md shadow-sm"
       style={{
         backgroundColor: 'rgba(255, 255, 255, 0.75)',
         borderColor: 'rgba(226, 232, 240, 0.8)',
