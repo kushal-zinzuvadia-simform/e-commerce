@@ -1,11 +1,6 @@
 export const Footer = () => {
   return (
-    <footer
-      className="
-        border-t border-slate-200
-        bg-white
-      "
-    >
+    <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
@@ -48,12 +43,7 @@ export const Footer = () => {
               href="https://www.google.com/maps"
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                inline-block mt-3
-                text-sm font-medium text-slate-700
-                underline-offset-4
-                hover:underline
-              "
+              className="inline-block mt-3 text-sm font-medium text-slate-700 underline-offset-4 hover:underline"
             >
               View on map
             </a>

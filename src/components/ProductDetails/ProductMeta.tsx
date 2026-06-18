@@ -3,14 +3,7 @@ import type { Product } from '../../types/Product';
 export const ProductMeta = ({ product }: { product: Product }) => {
   return (
     <div>
-      <span
-        className="
-          text-xs
-          uppercase
-          tracking-[0.12em]
-          text-slate-400
-        "
-      >
+      <span className="text-xs uppercase tracking-[0.12em] text-slate-400">
         {product.category.name}
       </span>
 

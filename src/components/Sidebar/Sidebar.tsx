@@ -1,30 +1,11 @@
 export const Sidebar = () => {
   return (
-    <aside
-      className="
-        w-72
-        shrink-0
-        rounded-3xl
-        border border-slate-200
-        bg-white
-        p-6
-        shadow-sm
-        h-fit
-      "
-    >
+    <aside className="w-72 shrink-0 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm h-fit">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-slate-900">Filters</h2>
 
-        <button
-          className="
-            text-xs font-medium
-            cursor-pointer
-            text-slate-400
-            transition-colors
-            hover:text-slate-600
-          "
-        >
+        <button className="text-xs font-medium cursor-pointer text-slate-400 transition-colors hover:text-slate-600">
           Clear all
         </button>
       </div>
@@ -43,13 +24,7 @@ export const Sidebar = () => {
           ].map((option, index) => (
             <label
               key={option}
-              className="
-                flex cursor-pointer items-center gap-3
-                rounded-xl px-3 py-2
-                text-sm text-slate-600
-                transition
-                hover:bg-slate-50
-              "
+              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50"
             >
               <input
                 type="radio"
@@ -73,13 +48,7 @@ export const Sidebar = () => {
           {['Electronics', 'Clothing', 'Home', 'Shoes'].map((category) => (
             <label
               key={category}
-              className="
-                flex cursor-pointer items-center gap-3
-                rounded-xl px-3 py-2
-                text-sm text-slate-600
-                transition
-                hover:bg-slate-50
-              "
+              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50"
             >
               <input
                 type="checkbox"
@@ -102,13 +71,7 @@ export const Sidebar = () => {
             (range) => (
               <label
                 key={range}
-                className="
-                  flex cursor-pointer items-center gap-3
-                  rounded-xl px-3 py-2
-                  text-sm text-slate-600
-                  transition
-                  hover:bg-slate-50
-                "
+                className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50"
               >
                 <input
                   type="radio"
