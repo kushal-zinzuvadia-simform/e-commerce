@@ -32,7 +32,7 @@ export const HomePage = () => {
                   <p className="text-red-600">{error}</p>
 
                   <button
-                    onClick={refetch}
+                    onClick={() => refetch()}
                     className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
                   >
                     Retry

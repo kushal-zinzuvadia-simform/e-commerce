@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { fetchProducts } from '../api/productApi';
 import type { Product } from '../types/Product';
@@ -7,39 +7,27 @@ export const useProducts = () => {
   const [products, setProducts] = useState<Array<Product>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const isMountedRef = useRef(true);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (signal?: AbortSignal) => {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchProducts();
-      if (isMountedRef.current) {
-        setProducts(data);
-      }
+      const data = await fetchProducts(signal);
+      setProducts(data);
     } catch (err) {
-      if (isMountedRef.current) {
-        setError(
-          err instanceof Error ? err.message : 'An unexpected error occurred.'
-        );
-      }
+      if (err instanceof DOMException && err.name === 'AbortError') return;
+      setError(
+        err instanceof Error ? err.message : 'An unexpected error occurred.'
+      );
     } finally {
-      if (isMountedRef.current) {
-        setLoading(false);
-      }
+      setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    isMountedRef.current = true;
-
-    (async () => {
-      await load();
-    })();
-
-    return () => {
-      isMountedRef.current = false;
-    };
+    const controller = new AbortController();
+    load(controller.signal);
+    return () => controller.abort();
   }, [load]);
 
   return { products, loading, error, refetch: load };

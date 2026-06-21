@@ -2,8 +2,10 @@ import type { Product } from '../types/Product';
 
 const BASE_URL = 'https://api.escuelajs.co/api/v1';
 
-export const fetchProducts = async (): Promise<Array<Product>> => {
-  const response = await fetch(`${BASE_URL}/products`);
+export const fetchProducts = async (
+  signal?: AbortSignal
+): Promise<Array<Product>> => {
+  const response = await fetch(`${BASE_URL}/products`, { signal });
 
   if (!response.ok) {
     throw new Error(
