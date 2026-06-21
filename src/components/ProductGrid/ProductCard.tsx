@@ -11,6 +11,8 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const { id, title, description, price, images } = product;
 
   const imageUrl = getCleanImageUrl(images);
+
+  // Mock stock data - derived from product id until real inventory API is available
   const isAvailable = id % 7 !== 0;
   const stockCount = (id % 5) + 1;
 
@@ -18,7 +20,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
     <article
       onClick={onClick}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onClick();
+        if (e.key === 'Enter' || e.key === ' ') onClick?.();
       }}
       className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]"
       role="button"
