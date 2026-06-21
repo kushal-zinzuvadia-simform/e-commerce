@@ -16,7 +16,7 @@ export const ImageGallery = ({ images, selectedIndex, onSelect }: Props) => {
         <img
           src={
             hasImages
-              ? getCleanImageUrl([images[selectedIndex]])
+              ? getCleanImageUrl(images[selectedIndex])
               : FALLBACK_IMAGE_URL
           }
           alt="Product"
@@ -32,7 +32,7 @@ export const ImageGallery = ({ images, selectedIndex, onSelect }: Props) => {
         <div className="mt-4 flex gap-3 overflow-x-auto">
           {images.map((img, idx) => (
             <button
-              key={img}
+              key={`${img}-${idx}`}
               onClick={() => onSelect(idx)}
               className={`
                 h-20 w-20 shrink-0 overflow-hidden rounded-xl border
@@ -44,7 +44,7 @@ export const ImageGallery = ({ images, selectedIndex, onSelect }: Props) => {
               `}
             >
               <img
-                src={getCleanImageUrl([img])}
+                src={getCleanImageUrl(img)}
                 alt={`Thumbnail ${idx}`}
                 className="h-full w-full object-cover"
               />

@@ -10,7 +10,7 @@ interface ProductCardProps {
 export const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const { id, title, description, price, images } = product;
 
-  const imageUrl = getCleanImageUrl(images);
+  const imageUrl = getCleanImageUrl(images?.[0]);
 
   // Mock stock data - derived from product id until real inventory API is available
   const isAvailable = id % 7 !== 0;

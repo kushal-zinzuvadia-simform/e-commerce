@@ -1,11 +1,10 @@
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60';
 
-export const getCleanImageUrl = (images: string[] | undefined): string => {
-  const primary = images?.[0];
-  if (!primary) return FALLBACK_IMAGE;
+export const getCleanImageUrl = (url: string | undefined): string => {
+  if (!url) return FALLBACK_IMAGE;
 
-  let cleaned = primary.trim();
+  let cleaned = url.trim();
 
   if (cleaned.startsWith('[') && cleaned.endsWith(']')) {
     try {
