@@ -1,13 +1,22 @@
+import { useState } from 'react';
+import { MockError } from '../MockError/MockError';
+
 export const Sidebar = () => {
+  const [showError, setShowError] = useState(false);
+
   return (
     <aside className="w-72 shrink-0 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm h-fit">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-slate-900">Filters</h2>
 
-        <button className="text-xs font-medium cursor-pointer text-slate-400 transition-colors hover:text-slate-600">
+        <button
+          className="text-xs font-medium cursor-pointer text-slate-400 transition-colors hover:text-slate-600"
+          onClick={() => setShowError(true)}
+        >
           Clear all
         </button>
+        {showError && <MockError />}
       </div>
 
       <div className="mb-6">

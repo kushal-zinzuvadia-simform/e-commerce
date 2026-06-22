@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Cart } from '../Cart/Cart';
 import { SearchBar } from './SearchBar';
+import { MockError } from '../MockError/MockError';
 
 interface HeaderProps {
   searchQuery: string;
@@ -53,7 +53,7 @@ export const Header = ({
         >
           <img src="/icons/cart.svg" alt="Cart" className="h-8 w-8" />
         </button>
-        {showError && <Cart />}
+        {showError && <MockError />}
       </div>
     </header>
   );
