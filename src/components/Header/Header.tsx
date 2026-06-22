@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Cart } from '../Cart/Cart';
 import { SearchBar } from './SearchBar';
 
 interface HeaderProps {
@@ -11,6 +13,8 @@ export const Header = ({
   onSearchChange,
   onLogoClick,
 }: HeaderProps) => {
+  const [showError, setShowError] = useState(false);
+
   return (
     <header
       className="sticky top-0 z-10 w-full border-b backdrop-blur-md shadow-sm"
@@ -45,9 +49,11 @@ export const Header = ({
           className="flex h-11 w-11 items-center justify-center cursor-pointer"
           aria-label="Cart"
           title="Cart"
+          onClick={() => setShowError(true)}
         >
           <img src="/icons/cart.svg" alt="Cart" className="h-8 w-8" />
         </button>
+        {showError && <Cart />}
       </div>
     </header>
   );
