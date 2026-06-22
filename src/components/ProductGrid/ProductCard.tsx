@@ -22,7 +22,7 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') onClick?.();
       }}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:border-slate-400 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]"
       role="button"
       tabIndex={0}
       aria-label={`View details for ${title}`}

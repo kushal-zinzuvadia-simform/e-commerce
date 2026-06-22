@@ -17,7 +17,7 @@ export const ProductDetail = ({ product, onBack }: ProductDetailProps) => {
     <div className="w-full max-w-7xl mx-auto">
       <button
         onClick={onBack}
-        className="mb-6 text-sm font-medium text-slate-500 transition hover:text-slate-900"
+        className="mb-6 text-sm font-medium text-slate-500 cursor-pointer transition hover:text-slate-900"
       >
         &larr; Back to products
       </button>

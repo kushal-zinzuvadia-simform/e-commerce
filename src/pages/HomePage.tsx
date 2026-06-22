@@ -1,21 +1,35 @@
 import { useState } from 'react';
 
+import { Footer } from '../components/Footer/Footer';
 import { Header } from '../components/Header/Header';
+import { ProductDetail } from '../components/ProductDetails/ProductDetail';
 import { ProductGrid } from '../components/ProductGrid/ProductGrid';
 import { Sidebar } from '../components/Sidebar/Sidebar';
 import { useProducts } from '../hooks/useProducts';
-import { Footer } from '../components/Footer/Footer';
 import type { Product } from '../types/Product';
-import { ProductDetail } from '../components/ProductDetails/ProductDetail';
 
 export const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { products, loading, error, refetch } = useProducts();
 
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const navigateHome = () => {
+    setSelectedProduct(null);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+      <Header
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onLogoClick={navigateHome}
+      />
 
       <main className="mx-auto max-w-7xl px-6 py-10 flex gap-8">
         {!selectedProduct ? (
@@ -41,7 +55,7 @@ export const HomePage = () => {
               ) : (
                 <ProductGrid
                   products={products}
-                  onProductClick={setSelectedProduct}
+                  onProductClick={handleProductClick}
                 />
               )}
             </div>
@@ -49,7 +63,10 @@ export const HomePage = () => {
         ) : (
           <ProductDetail
             product={selectedProduct}
-            onBack={() => setSelectedProduct(null)}
+            onBack={() => {
+              setSelectedProduct(null);
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
           />
         )}
       </main>
