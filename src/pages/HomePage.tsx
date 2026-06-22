@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Footer } from '../components/Footer/Footer';
 import { Header } from '../components/Header/Header';
@@ -14,7 +14,14 @@ import { SectionErrorFallback } from '../components/ErrorBoundary/SectionErrorFa
 export const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
   const { products, loading, error, refetch } = useProducts();
+
+  const filteredProducts = products.filter(
+    (p) =>
+      p.title.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+      p.description.toLowerCase().includes(searchQuery.toLowerCase().trim())
+  );
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -23,7 +30,13 @@ export const HomePage = () => {
 
   const navigateHome = () => {
     setSelectedProduct(null);
+    setSearchQuery('');
     window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const focusSearch = () => {
+    navigateHome();
+    searchRef.current?.focus();
   };
 
   return (
@@ -32,6 +45,7 @@ export const HomePage = () => {
     >
       <div className="min-h-screen bg-[#f8fafc]">
         <Header
+          searchRef={searchRef}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           onLogoClick={navigateHome}
@@ -83,7 +97,7 @@ export const HomePage = () => {
                     </div>
                   ) : (
                     <ProductGrid
-                      products={products}
+                      products={filteredProducts}
                       onProductClick={handleProductClick}
                     />
                   )}
@@ -107,7 +121,7 @@ export const HomePage = () => {
           )}
         </main>
 
-        <Footer />
+        <Footer onFocusSearch={focusSearch} />
       </div>
     </ErrorBoundary>
   );

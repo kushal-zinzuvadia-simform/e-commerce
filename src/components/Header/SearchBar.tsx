@@ -1,13 +1,17 @@
+import type { Ref } from 'react';
+
 interface SearchBarProps {
   query: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  ref?: Ref<HTMLInputElement>;
 }
 
 export const SearchBar = ({
   query,
   onChange,
   placeholder = 'Search products by title or description...',
+  ref,
 }: SearchBarProps) => {
   return (
     <div className="relative w-full">
@@ -19,6 +23,7 @@ export const SearchBar = ({
       />
 
       <input
+        ref={ref}
         type="text"
         value={query}
         onChange={(e) => onChange(e.target.value)}

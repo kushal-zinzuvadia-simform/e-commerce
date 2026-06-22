@@ -1,3 +1,4 @@
+import type { Ref } from 'react';
 import { useState } from 'react';
 import { SearchBar } from './SearchBar';
 import { MockError } from '../MockError/MockError';
@@ -6,12 +7,14 @@ interface HeaderProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
   onLogoClick: () => void;
+  searchRef?: Ref<HTMLInputElement>;
 }
 
 export const Header = ({
   searchQuery,
   onSearchChange,
   onLogoClick,
+  searchRef,
 }: HeaderProps) => {
   const [showError, setShowError] = useState(false);
 
@@ -39,8 +42,12 @@ export const Header = ({
 
         {/* Search */}
         <div className="flex justify-center">
-          <div className="w-full max-w-150" title="Search">
-            <SearchBar query={searchQuery} onChange={onSearchChange} />
+          <div className="w-full max-w-150">
+            <SearchBar
+              ref={searchRef}
+              query={searchQuery}
+              onChange={onSearchChange}
+            />
           </div>
         </div>
 
