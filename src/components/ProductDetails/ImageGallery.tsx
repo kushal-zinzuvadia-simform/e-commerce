@@ -1,7 +1,7 @@
 import { FALLBACK_IMAGE_URL, getCleanImageUrl } from '../../utils/imageUtils';
 
 interface Props {
-  images: string[];
+  images: Array<string>;
   selectedIndex: number;
   onSelect: (index: number) => void;
 }

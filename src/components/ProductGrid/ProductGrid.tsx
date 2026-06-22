@@ -2,7 +2,7 @@ import type { Product } from '../../types/Product';
 import { ProductCard } from './ProductCard';
 
 interface ProductGridProps {
-  products: Product[];
+  products: Array<Product>;
   onProductClick?: (product: Product) => void;
 }
 
