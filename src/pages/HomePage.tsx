@@ -41,7 +41,9 @@ export const HomePage = () => {
 
   return (
     <ErrorBoundary
-      fallback={(err, reset) => <PageErrorFallback error={err} reset={reset} />}
+      fallback={({ error, reset }) => (
+        <PageErrorFallback error={error} reset={reset} />
+      )}
     >
       <div className="min-h-screen bg-[#f8fafc]">
         <Header
@@ -55,10 +57,10 @@ export const HomePage = () => {
           {!selectedProduct ? (
             <>
               <ErrorBoundary
-                fallback={(err, reset) => (
+                fallback={({ error, reset }) => (
                   <div className="w-72 shrink-0 h-fit">
                     <SectionErrorFallback
-                      error={err}
+                      error={error}
                       reset={reset}
                       label="Filters"
                     />
@@ -70,9 +72,9 @@ export const HomePage = () => {
 
               <div className="flex-1">
                 <ErrorBoundary
-                  fallback={(err, reset) => (
+                  fallback={({ error, reset }) => (
                     <SectionErrorFallback
-                      error={err}
+                      error={error}
                       reset={reset}
                       label="Product listing"
                     />
@@ -106,8 +108,8 @@ export const HomePage = () => {
             </>
           ) : (
             <ErrorBoundary
-              fallback={(err, reset) => (
-                <PageErrorFallback error={err} reset={reset} />
+              fallback={({ error, reset }) => (
+                <PageErrorFallback error={error} reset={reset} />
               )}
             >
               <ProductDetail

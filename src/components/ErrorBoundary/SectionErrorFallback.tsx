@@ -1,6 +1,6 @@
-interface SectionErrorFallbackProps {
-  error: Error;
-  reset: () => void;
+import type { FallbackProps } from './ErrorBoundary';
+
+interface SectionErrorFallbackProps extends FallbackProps {
   label?: string;
 }
 

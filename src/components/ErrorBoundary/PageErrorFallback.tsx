@@ -1,9 +1,6 @@
-interface PageErrorFallbackProps {
-  error: Error;
-  reset: () => void;
-}
+import type { FallbackProps } from './ErrorBoundary';
 
-export const PageErrorFallback = ({ error, reset }: PageErrorFallbackProps) => {
+export const PageErrorFallback = ({ error, reset }: FallbackProps) => {
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
       <h2 className="mb-2 text-xl font-semibold text-slate-900">
