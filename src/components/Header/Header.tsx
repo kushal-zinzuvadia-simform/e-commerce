@@ -1,19 +1,18 @@
 import type { Ref } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { SearchBar } from './SearchBar';
 import { MockError } from '../MockError/MockError';
 
 interface HeaderProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
-  onLogoClick: () => void;
   searchRef?: Ref<HTMLInputElement>;
 }
 
 export const Header = ({
   searchQuery,
   onSearchChange,
-  onLogoClick,
   searchRef,
 }: HeaderProps) => {
   const [showError, setShowError] = useState(false);
@@ -29,16 +28,16 @@ export const Header = ({
     >
       <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6 px-6 py-4">
         {/* Logo */}
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={onLogoClick}
+        <Link
+          to="/products"
+          className="flex items-center gap-3"
           aria-label="Go to Homepage"
         >
           <img src="/icons/logo.svg" alt="ShopSphere" className="h-8 w-8" />
           <span className="text-2xl font-extrabold tracking-tight text-[#0f172a]">
             ShopSphere
           </span>
-        </div>
+        </Link>
 
         {/* Search */}
         <div className="flex justify-center">

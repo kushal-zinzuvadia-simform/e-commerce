@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { formatCurrency } from '../../utils/priceUtils';
 import type { Product } from '../../types/Product';
@@ -7,16 +8,16 @@ import { ProductMeta } from './ProductMeta';
 
 interface ProductDetailProps {
   product: Product;
-  onBack: () => void;
 }
 
-export const ProductDetail = ({ product, onBack }: ProductDetailProps) => {
+export const ProductDetail = ({ product }: ProductDetailProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <div className="w-full max-w-7xl mx-auto">
       <button
-        onClick={onBack}
+        onClick={() => navigate(-1)}
         className="mb-6 text-sm font-medium text-slate-500 cursor-pointer transition hover:text-slate-900"
       >
         &larr; Back to products

@@ -21,3 +21,20 @@ export const fetchProducts = async (
 
   return data;
 };
+
+export const fetchProductById = async (
+  id: number,
+  signal?: AbortSignal
+): Promise<Product | null> => {
+  const response = await fetch(`${BASE_URL}/products/${id}`, { signal });
+
+  if (response.status === 404) return null;
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch product: ${response.status} ${response.statusText}`
+    );
+  }
+
+  return response.json() as Promise<Product>;
+};

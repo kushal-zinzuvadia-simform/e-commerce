@@ -3,10 +3,9 @@ import { ProductCard } from './ProductCard';
 
 interface ProductGridProps {
   products: Array<Product>;
-  onProductClick?: (product: Product) => void;
 }
 
-export const ProductGrid = ({ products, onProductClick }: ProductGridProps) => {
+export const ProductGrid = ({ products }: ProductGridProps) => {
   if (products.length === 0) {
     return (
       <div
@@ -40,11 +39,7 @@ export const ProductGrid = ({ products, onProductClick }: ProductGridProps) => {
       "
     >
       {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          onClick={() => onProductClick?.(product)}
-        />
+        <ProductCard key={product.id} product={product} />
       ))}
     </section>
   );

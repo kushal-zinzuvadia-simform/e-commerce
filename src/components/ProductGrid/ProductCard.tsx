@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom';
+
 import { FALLBACK_IMAGE_URL, getCleanImageUrl } from '../../utils/imageUtils';
 import { formatCurrency } from '../../utils/priceUtils';
 import type { Product } from '../../types/Product';
 
 interface ProductCardProps {
   product: Product;
-  onClick?: () => void;
 }
 
-export const ProductCard = ({ product, onClick }: ProductCardProps) => {
+export const ProductCard = ({ product }: ProductCardProps) => {
   const { id, title, description, price, images } = product;
 
   const imageUrl = getCleanImageUrl(images?.[0]);
@@ -17,14 +18,9 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const stockCount = (id % 5) + 1;
 
   return (
-    <article
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onClick?.();
-      }}
+    <Link
+      to={`/products/${id}`}
       className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:border-slate-400 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]"
-      role="button"
-      tabIndex={0}
       aria-label={`View details for ${title}`}
     >
       {/* Image */}
@@ -79,6 +75,6 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };
