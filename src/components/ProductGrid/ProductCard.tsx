@@ -30,7 +30,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           alt={title}
           loading="lazy"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = FALLBACK_IMAGE_URL;
+            if (e.target instanceof HTMLImageElement) {
+              e.target.src = FALLBACK_IMAGE_URL;
+            }
           }}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />

@@ -36,5 +36,5 @@ export const fetchProductById = async (
     );
   }
 
-  return response.json() as Promise<Product>;
+  return response.json();
 };

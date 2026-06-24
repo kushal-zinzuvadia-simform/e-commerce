@@ -22,7 +22,9 @@ export const ImageGallery = ({ images, selectedIndex, onSelect }: Props) => {
           alt="Product"
           className="h-full w-full object-cover"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = FALLBACK_IMAGE_URL;
+            if (e.target instanceof HTMLImageElement) {
+              e.target.src = FALLBACK_IMAGE_URL;
+            }
           }}
         />
       </div>

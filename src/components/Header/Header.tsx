@@ -1,8 +1,6 @@
 import type { Ref } from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SearchBar } from './SearchBar';
-import { MockError } from '../MockError/MockError';
 
 interface HeaderProps {
   searchQuery: string;
@@ -15,8 +13,6 @@ export const Header = ({
   onSearchChange,
   searchRef,
 }: HeaderProps) => {
-  const [showError, setShowError] = useState(false);
-
   return (
     <header
       className="sticky top-0 z-10 w-full border-b backdrop-blur-md shadow-sm"
@@ -27,7 +23,6 @@ export const Header = ({
       role="banner"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6 px-6 py-4">
-        {/* Logo */}
         <Link
           to="/products"
           className="flex items-center gap-3"
@@ -39,7 +34,6 @@ export const Header = ({
           </span>
         </Link>
 
-        {/* Search */}
         <div className="flex justify-center">
           <div className="w-full max-w-150">
             <SearchBar
@@ -50,16 +44,13 @@ export const Header = ({
           </div>
         </div>
 
-        {/* Cart */}
         <button
           className="flex h-11 w-11 items-center justify-center cursor-pointer"
           aria-label="Cart"
           title="Cart"
-          onClick={() => setShowError(true)}
         >
           <img src="/icons/cart.svg" alt="Cart" className="h-8 w-8" />
         </button>
-        {showError && <MockError />}
       </div>
     </header>
   );
