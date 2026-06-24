@@ -8,5 +8,6 @@ export const useProduct = (id: number) => {
     queryKey: ['product', id],
     queryFn: ({ signal }) => fetchProductById(id, signal),
     enabled: Number.isInteger(id) && id > 0,
+    retry: false,
   });
 };

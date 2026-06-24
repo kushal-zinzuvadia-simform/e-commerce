@@ -31,19 +31,11 @@ const ProductDetailPage = () => {
       return;
     }
 
-    setProduct(null);
-    setLoading(true);
-
-    // If query finishes and product is null, it's a 404
-    if (isFetched && product === null) {
+    // If query finishes and product is null, or if there's an error fetching
+    if (error || (isFetched && product === null)) {
       navigate('/not-found', { replace: true });
     }
-  }, [id, numericId, navigate, isFetched, product]);
-
-  // Throw error to be caught by ErrorBoundary
-  if (error) {
-    throw error;
-  }
+  }, [id, numericId, navigate, isFetched, product, error]);
 
   return (
     <ErrorBoundary
