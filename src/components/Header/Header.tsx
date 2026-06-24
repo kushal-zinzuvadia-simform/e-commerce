@@ -1,16 +1,23 @@
+import type { Ref } from 'react';
+import { useState } from 'react';
 import { SearchBar } from './SearchBar';
+import { MockError } from '../MockError/MockError';
 
 interface HeaderProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
   onLogoClick: () => void;
+  searchRef?: Ref<HTMLInputElement>;
 }
 
 export const Header = ({
   searchQuery,
   onSearchChange,
   onLogoClick,
+  searchRef,
 }: HeaderProps) => {
+  const [showError, setShowError] = useState(false);
+
   return (
     <header
       className="sticky top-0 z-10 w-full border-b backdrop-blur-md shadow-sm"
@@ -35,8 +42,12 @@ export const Header = ({
 
         {/* Search */}
         <div className="flex justify-center">
-          <div className="w-full max-w-150" title="Search">
-            <SearchBar query={searchQuery} onChange={onSearchChange} />
+          <div className="w-full max-w-150">
+            <SearchBar
+              ref={searchRef}
+              query={searchQuery}
+              onChange={onSearchChange}
+            />
           </div>
         </div>
 
@@ -45,9 +56,11 @@ export const Header = ({
           className="flex h-11 w-11 items-center justify-center cursor-pointer"
           aria-label="Cart"
           title="Cart"
+          onClick={() => setShowError(true)}
         >
           <img src="/icons/cart.svg" alt="Cart" className="h-8 w-8" />
         </button>
+        {showError && <MockError />}
       </div>
     </header>
   );
