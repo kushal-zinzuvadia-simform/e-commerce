@@ -1,6 +1,8 @@
 import type { Ref } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { SearchBar } from './SearchBar';
+import { logout } from '../../utils/auth';
 
 interface HeaderProps {
   searchQuery: string;
@@ -13,6 +15,13 @@ export const Header = ({
   onSearchChange,
   searchRef,
 }: HeaderProps) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
+
   return (
     <header
       className="sticky top-0 z-10 w-full border-b backdrop-blur-md shadow-sm"
@@ -44,13 +53,27 @@ export const Header = ({
           </div>
         </div>
 
-        <button
-          className="flex h-11 w-11 items-center justify-center cursor-pointer"
-          aria-label="Cart"
-          title="Cart"
-        >
-          <img src="/icons/cart.svg" alt="Cart" className="h-8 w-8" />
-        </button>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-10 px-6 py-2">
+            <button
+              onClick={() => navigate('/profile')}
+              className="flex h-11 w-11 items-center justify-center cursor-pointer text-slate-600"
+              aria-label="Profile"
+              title="Profile"
+            >
+              Profile
+            </button>
+
+            <button
+              onClick={handleLogout}
+              className="flex h-11 w-11 items-center justify-center cursor-pointer text-slate-600 hover:text-red-600 transition-colors"
+              aria-label="Logout"
+              title="Logout"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );
