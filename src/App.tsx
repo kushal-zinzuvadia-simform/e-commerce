@@ -15,17 +15,15 @@ export function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/products" replace />} />
 
-        <Route>
-          <Route element={<PublicRoute />}>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<RegisterPage />} />
-          </Route>
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
+        </Route>
 
-          <Route element={<ProtectedRoute />}>
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/products/:id" element={<ProductDetailPage />} />
-            <Route path="/profile" element={<Profile />} />
-          </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="/not-found" element={<NotFoundPage />} />
