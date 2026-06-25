@@ -1,4 +1,5 @@
-import type { PriceRange, SortOption } from '../../hooks/useFilterParams';
+import { PRICE_OPTIONS, SORT_OPTIONS } from '../../data/filterOptions';
+import type { PriceRange, SortOption } from '../../types/Filter';
 
 interface SidebarProps {
   sort: SortOption;
@@ -10,20 +11,6 @@ interface SidebarProps {
   onClearAll: () => void;
   availableCategories: string[];
 }
-
-const SORT_OPTIONS: { label: string; value: SortOption }[] = [
-  { label: 'Relevance', value: 'relevance' },
-  { label: 'Price: Low to High', value: 'price_asc' },
-  { label: 'Price: High to Low', value: 'price_desc' },
-  { label: 'Latest', value: 'latest' },
-];
-
-const PRICE_OPTIONS: { label: string; value: PriceRange }[] = [
-  { label: 'Under $50', value: 'under_50' },
-  { label: '$50 - $100', value: '50_100' },
-  { label: '$100 - $200', value: '100_200' },
-  { label: 'Above $200', value: 'above_200' },
-];
 
 export const Sidebar = ({
   sort,

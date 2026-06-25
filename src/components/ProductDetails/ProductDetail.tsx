@@ -17,7 +17,7 @@ export const ProductDetail = ({ product }: ProductDetailProps) => {
   return (
     <div className="w-full max-w-7xl mx-auto">
       <button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate('/products')}
         className="mb-6 text-sm font-medium text-slate-500 cursor-pointer transition hover:text-slate-900"
       >
         &larr; Back to products

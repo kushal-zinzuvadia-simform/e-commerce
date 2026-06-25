@@ -28,9 +28,9 @@ export const fetchProductById = async (
 ): Promise<Product | null> => {
   const response = await fetch(`${BASE_URL}/products/${id}`, { signal });
 
-  if (response.status === 404) return null;
-
   if (!response.ok) {
+    if (response.status === 404) return null;
+
     throw new Error(
       `Failed to fetch product: ${response.status} ${response.statusText}`
     );

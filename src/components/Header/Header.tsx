@@ -1,8 +1,8 @@
 import type { Ref } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { SearchBar } from './SearchBar';
 import { logout } from '../../utils/auth';
+import { SearchBar } from './SearchBar';
 
 interface HeaderProps {
   searchQuery: string;

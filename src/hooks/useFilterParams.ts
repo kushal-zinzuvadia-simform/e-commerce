@@ -1,8 +1,7 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-export type SortOption = 'relevance' | 'price_asc' | 'price_desc' | 'latest';
-export type PriceRange = 'under_50' | '50_100' | '100_200' | 'above_200' | '';
+import type { PriceRange, SortOption } from '../types/Filter';
 
 export const useFilterParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
