@@ -11,7 +11,7 @@ import { useProducts } from '../hooks/useProducts';
 import { useFilterParams } from '../hooks/useFilterParams';
 
 export const ProductsPage = () => {
-  const searchRef = useRef<HTMLInputElement>(null);
+  const searchRef = useRef<HTMLInputElement | null>(null);
   const { products, loading, error, refetch } = useProducts();
   const {
     q,
