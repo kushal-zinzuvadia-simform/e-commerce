@@ -36,3 +36,5 @@ export const INDIAN_STATES = [
   { code: 'UT', name: 'Uttarakhand' },
   { code: 'WB', name: 'West Bengal' },
 ] as const;
+
+export type StateCode = (typeof INDIAN_STATES)[number]['code'];

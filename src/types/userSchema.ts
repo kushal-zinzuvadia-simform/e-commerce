@@ -1,14 +1,13 @@
 import { z } from 'zod';
 
-import { INDIAN_STATES } from '../data/stateData';
+import { INDIAN_STATES, type StateCode } from '../data/stateData';
 import { patterns } from '../utils/Patterns';
 
 export const GENDERS = ['Male', 'Female'] as const;
 
-export const STATE_CODES = INDIAN_STATES.map((state) => state.code) as [
-  string,
-  ...string[],
-];
+export const STATE_CODES = INDIAN_STATES.map(
+  (state) => state.code
+) as unknown as readonly [StateCode, ...StateCode[]];
 
 const nameSchema = z
   .string()
