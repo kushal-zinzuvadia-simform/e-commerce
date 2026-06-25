@@ -55,11 +55,7 @@ export const ProductDetailPage = () => {
       )}
     >
       <div className="min-h-screen bg-[#f8fafc]">
-        <Header
-          searchRef={searchRef}
-          searchQuery=""
-          onSearchChange={() => {}}
-        />
+        <Header searchRef={searchRef} />
 
         <main className="mx-auto max-w-7xl px-6 py-10">
           {loading ? (

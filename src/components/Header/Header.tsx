@@ -5,8 +5,8 @@ import { logout } from '../../utils/auth';
 import { SearchBar } from './SearchBar';
 
 interface HeaderProps {
-  searchQuery: string;
-  onSearchChange: (value: string) => void;
+  searchQuery?: string;
+  onSearchChange?: (value: string) => void;
   searchRef?: Ref<HTMLInputElement>;
 }
 
@@ -44,13 +44,15 @@ export const Header = ({
         </Link>
 
         <div className="flex justify-center">
-          <div className="w-full max-w-150">
-            <SearchBar
-              ref={searchRef}
-              query={searchQuery}
-              onChange={onSearchChange}
-            />
-          </div>
+          {searchQuery !== undefined && onSearchChange && (
+            <div className="w-full max-w-150">
+              <SearchBar
+                ref={searchRef}
+                query={searchQuery}
+                onChange={onSearchChange}
+              />
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
