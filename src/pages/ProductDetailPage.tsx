@@ -19,18 +19,20 @@ export const ProductDetailPage = () => {
   useEffect(() => {
     const numericId = Number(id);
 
-    // Redirect immediately for non-numeric ids
     if (!id || !Number.isInteger(numericId) || numericId <= 0) {
       navigate('/not-found', { replace: true });
       return;
     }
 
+    setProduct(null);
+    setLoading(true);
+
     const controller = new AbortController();
 
     const load = async () => {
-      setLoading(true);
       try {
         const data = await fetchProductById(numericId, controller.signal);
+
         if (data === null) {
           navigate('/not-found', { replace: true });
         } else {

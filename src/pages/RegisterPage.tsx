@@ -29,8 +29,7 @@ import {
 import { useProfileImage } from '../hooks/useProfileImage';
 import { ProfileImageUpload } from '../components/auth/ProfileImageUpload';
 import { PasswordField } from '../components/auth/PasswordField';
-import { saveUsers, userExists } from '../utils/userStorage';
-import { getUsers } from '../utils/userStorage';
+import { saveUsers, userExists, getUsers } from '../utils/userStorage';
 
 export const RegisterPage = () => {
   const { profileImage, imageError, handleImageUpload } = useProfileImage();
