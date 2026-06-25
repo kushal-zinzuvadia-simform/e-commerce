@@ -40,11 +40,11 @@ export const Profile = () => {
         maxWidth: 900,
         mx: 'auto',
         my: 4,
-        p: { xs: 3, md: 4 },
-        borderRadius: 4,
+        p: { xs: 2, md: 3 },
+        borderRadius: 3,
       }}
     >
-      <Stack spacing={4}>
+      <Stack spacing={2.5}>
         <Stack
           direction="row"
           spacing={2}
@@ -55,16 +55,16 @@ export const Profile = () => {
           <Avatar
             src={currentUser.profileImage}
             sx={{
-              width: 80,
-              height: 80,
-              fontSize: 32,
+              width: 60,
+              height: 60,
+              fontSize: 24,
             }}
           >
             {!currentUser.profileImage && currentUser.firstName?.[0]}
           </Avatar>
 
           <Stack spacing={0.5}>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {currentUser.firstName} {currentUser.lastName}
             </Typography>
           </Stack>
@@ -72,7 +72,7 @@ export const Profile = () => {
 
         <Divider />
 
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid size={{ xs: 12, sm: 6 }}>
             <ProfileField label="First Name" value={currentUser.firstName} />
           </Grid>
@@ -112,19 +112,36 @@ export const Profile = () => {
 
         <Divider />
 
-        <Button
-          variant="contained"
-          color="error"
-          size="large"
-          onClick={handleLogout}
-          sx={{
-            py: 1.5,
-            borderRadius: 2,
-            fontWeight: 600,
-          }}
-        >
-          Logout
-        </Button>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => navigate('/')}
+            sx={{
+              flex: 1,
+              py: 1,
+              borderRadius: 2,
+              fontWeight: 600,
+            }}
+          >
+            Back to products
+          </Button>
+
+          <Button
+            variant="contained"
+            color="error"
+            size="large"
+            onClick={handleLogout}
+            sx={{
+              flex: 1,
+              py: 1,
+              borderRadius: 2,
+              fontWeight: 600,
+            }}
+          >
+            Logout
+          </Button>
+        </Stack>
       </Stack>
     </Paper>
   );
