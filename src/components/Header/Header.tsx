@@ -54,20 +54,18 @@ export const Header = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-10 px-6 py-2">
-            <button
-              onClick={() => navigate('/profile')}
-              className="flex h-11 w-11 items-center justify-center cursor-pointer text-slate-600"
-              aria-label="Profile"
+          <div className="flex items-center gap-6 px-6 py-2">
+            <Link
+              to="/profile"
+              className="flex h-11 px-3 py-1 items-center justify-center cursor-pointer text-slate-600 bg-slate-200 rounded-lg"
               title="Profile"
             >
-              Profile
-            </button>
+              My Profile
+            </Link>
 
             <button
               onClick={handleLogout}
-              className="flex h-11 w-11 items-center justify-center cursor-pointer text-slate-600 hover:text-red-600 transition-colors"
-              aria-label="Logout"
+              className="flex h-11 px-3 py-1 items-center justify-center cursor-pointer text-slate-600 hover:text-red-600 transition-colors bg-slate-200 rounded-lg"
               title="Logout"
             >
               Logout
