@@ -31,14 +31,14 @@ export const Header = ({
       }}
       role="banner"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6 px-6 py-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-6 py-2.5">
         <Link
           to="/products"
-          className="flex items-center gap-3"
+          className="flex items-center gap-2"
           aria-label="Go to Homepage"
         >
-          <img src="/icons/logo.svg" alt="ShopSphere" className="h-8 w-8" />
-          <span className="text-2xl font-extrabold tracking-tight text-[#0f172a]">
+          <img src="/icons/logo.svg" alt="ShopSphere" className="h-6 w-6" />
+          <span className="text-xl font-extrabold tracking-tight text-[#0f172a]">
             ShopSphere
           </span>
         </Link>
@@ -56,10 +56,10 @@ export const Header = ({
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-6 px-6 py-2">
+          <div className="flex items-center gap-3 px-4 py-1.5">
             <Link
               to="/profile"
-              className="flex h-11 px-3 py-1 items-center justify-center cursor-pointer text-slate-600 bg-slate-200 rounded-lg"
+              className="flex h-8 px-3 items-center justify-center cursor-pointer text-sm text-slate-600 bg-slate-200 rounded-lg hover:bg-slate-300 transition-colors"
               title="Profile"
             >
               My Profile
@@ -67,7 +67,7 @@ export const Header = ({
 
             <button
               onClick={handleLogout}
-              className="flex h-11 px-3 py-1 items-center justify-center cursor-pointer text-slate-600 hover:text-red-600 transition-colors bg-slate-200 rounded-lg"
+              className="flex h-8 px-3 items-center justify-center cursor-pointer text-sm text-slate-600 hover:text-red-600 transition-colors bg-slate-200 rounded-lg"
               title="Logout"
             >
               Logout

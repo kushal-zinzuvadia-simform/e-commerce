@@ -28,8 +28,8 @@ export const Sidebar = ({
     (price ? 1 : 0);
 
   return (
-    <aside className="w-72 shrink-0 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm h-fit">
-      <div className="mb-6 flex items-center justify-between">
+    <aside className="w-64 shrink-0 self-start rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sticky top-[88px] max-h-[calc(100vh-88px-24px)] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-semibold text-slate-900">Filters</h2>
           {activeCount > 0 && (
@@ -48,16 +48,16 @@ export const Sidebar = ({
         </button>
       </div>
 
-      <div className="mb-6">
-        <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+      <div className="mb-5">
+        <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400">
           Sort by
         </h3>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           {SORT_OPTIONS.map((option) => (
             <label
               key={option.value}
-              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50"
+              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-1.5 text-sm text-slate-600 transition hover:bg-slate-50"
             >
               <input
                 type="radio"
@@ -73,16 +73,16 @@ export const Sidebar = ({
         </div>
       </div>
 
-      <div className="mb-6">
-        <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+      <div className="mb-5">
+        <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400">
           Category
         </h3>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           {availableCategories.map((category) => (
             <label
               key={category}
-              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50"
+              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-1.5 text-sm text-slate-600 transition hover:bg-slate-50"
             >
               <input
                 type="checkbox"
@@ -96,16 +96,16 @@ export const Sidebar = ({
         </div>
       </div>
 
-      <div className="mb-6">
-        <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+      <div className="mb-4">
+        <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400">
           Price
         </h3>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           {PRICE_OPTIONS.map((option) => (
             <label
               key={option.value}
-              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50"
+              className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-1.5 text-sm text-slate-600 transition hover:bg-slate-50"
             >
               <input
                 type="radio"

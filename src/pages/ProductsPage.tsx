@@ -102,10 +102,10 @@ export const ProductsPage = () => {
       <div className="min-h-screen bg-[#f8fafc]">
         <Header searchRef={searchRef} searchQuery={q} onSearchChange={setQ} />
 
-        <main className="mx-auto max-w-7xl px-6 py-10 flex gap-8">
+        <main className="mx-auto max-w-7xl px-6 py-8 flex items-start gap-8">
           <ErrorBoundary
             fallback={({ error, reset }) => (
-              <div className="w-72 shrink-0 h-fit">
+              <div className="w-64 shrink-0 h-fit">
                 <SectionErrorFallback
                   error={error}
                   reset={reset}
