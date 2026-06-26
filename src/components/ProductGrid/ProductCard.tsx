@@ -6,9 +6,13 @@ import type { Product } from '../../types/Product';
 
 interface ProductCardProps {
   product: Product;
+  priority?: boolean;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({
+  product,
+  priority = false,
+}: ProductCardProps) => {
   const { id, title, description, price, images } = product;
 
   const imageUrl = getCleanImageUrl(images?.[0]);
@@ -28,7 +32,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <img
           src={imageUrl}
           alt={title}
-          loading="lazy"
+          loading={priority ? undefined : 'lazy'}
+          fetchPriority={priority ? 'high' : undefined}
           onError={(e) => {
             if (e.target instanceof HTMLImageElement) {
               e.target.src = FALLBACK_IMAGE_URL;
