@@ -173,7 +173,7 @@ export const RegisterPage = () => {
               helperText={
                 errors.email?.message === 'duplicate' ? (
                   <>
-                    An account with this email already exists.{' '}
+                    An account with this email already exists.
                     <Link component={RouterLink} to="/login">
                       Please login.
                     </Link>
