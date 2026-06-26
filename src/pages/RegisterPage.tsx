@@ -173,7 +173,7 @@ const RegisterPage = () => {
               helperText={
                 errors.email?.message === 'duplicate' ? (
                   <>
-                    An account with this email already exists.{' '}
+                    An account with this email already exists.
                     <Link component={RouterLink} to="/login">
                       Please login.
                     </Link>
@@ -296,7 +296,7 @@ const RegisterPage = () => {
         </Button>
 
         <Typography variant="body2" align="center" color="text.secondary">
-          Already a member?{' '}
+          Already a member?
           <Link component={RouterLink} to="/login" underline="hover">
             Login here
           </Link>

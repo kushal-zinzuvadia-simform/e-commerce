@@ -4,7 +4,7 @@ import type { PriceRange, SortOption } from '../../types/Filter';
 interface SidebarProps {
   sort: SortOption;
   onSortChange: (value: SortOption) => void;
-  selectedCategories: string[];
+  selectedCategories: Array<string>;
   onCategoryToggle: (name: string) => void;
   price: PriceRange;
   onPriceChange: (value: PriceRange) => void;
