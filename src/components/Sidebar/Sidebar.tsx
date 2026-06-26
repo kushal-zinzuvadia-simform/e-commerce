@@ -28,7 +28,7 @@ export const Sidebar = ({
     (price ? 1 : 0);
 
   return (
-    <aside className="w-64 shrink-0 self-start rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sticky top-[88px] max-h-[calc(100vh-88px-24px)] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+    <aside className="w-64 shrink-0 self-start rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sticky top-22 max-h-[calc(100vh-88px-24px)] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none">
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-semibold text-slate-900">Filters</h2>
@@ -113,7 +113,7 @@ export const Sidebar = ({
                 value={option.value}
                 checked={price === option.value}
                 onChange={() =>
-                  onPriceChange(price === option.value ? '' : option.value)
+                  onPriceChange(price === option.value ? null : option.value)
                 }
                 className="h-4 w-4 shrink-0 border-slate-300"
               />
