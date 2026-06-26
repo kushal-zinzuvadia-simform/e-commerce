@@ -1,22 +1,26 @@
 import type { Ref } from 'react';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { logout } from '../../utils/auth';
 import { SearchBar } from './SearchBar';
-import { MockError } from '../MockError/MockError';
 
 interface HeaderProps {
-  searchQuery: string;
-  onSearchChange: (value: string) => void;
-  onLogoClick: () => void;
+  searchQuery?: string;
+  onSearchChange?: (value: string) => void;
   searchRef?: Ref<HTMLInputElement>;
 }
 
 export const Header = ({
   searchQuery,
   onSearchChange,
-  onLogoClick,
   searchRef,
 }: HeaderProps) => {
-  const [showError, setShowError] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
 
   return (
     <header
@@ -27,40 +31,49 @@ export const Header = ({
       }}
       role="banner"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6 px-6 py-4">
-        {/* Logo */}
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={onLogoClick}
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-6 py-2.5">
+        <Link
+          to="/products"
+          className="flex items-center gap-2"
           aria-label="Go to Homepage"
         >
-          <img src="/icons/logo.svg" alt="ShopSphere" className="h-8 w-8" />
-          <span className="text-2xl font-extrabold tracking-tight text-[#0f172a]">
+          <img src="/icons/logo.svg" alt="ShopSphere" className="h-6 w-6" />
+          <span className="text-xl font-extrabold tracking-tight text-[#0f172a]">
             ShopSphere
           </span>
+        </Link>
+
+        <div className="flex justify-center">
+          {searchQuery !== undefined && onSearchChange && (
+            <div className="w-full max-w-150">
+              <SearchBar
+                ref={searchRef}
+                query={searchQuery}
+                onChange={onSearchChange}
+              />
+            </div>
+          )}
         </div>
 
-        {/* Search */}
-        <div className="flex justify-center">
-          <div className="w-full max-w-150">
-            <SearchBar
-              ref={searchRef}
-              query={searchQuery}
-              onChange={onSearchChange}
-            />
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 px-4 py-1.5">
+            <Link
+              to="/profile"
+              className="flex h-8 px-3 items-center justify-center cursor-pointer text-sm text-slate-600 bg-slate-200 rounded-lg hover:bg-slate-300 transition-colors"
+              title="Profile"
+            >
+              My Profile
+            </Link>
+
+            <button
+              onClick={handleLogout}
+              className="flex h-8 px-3 items-center justify-center cursor-pointer text-sm text-slate-600 hover:text-red-600 transition-colors bg-slate-200 rounded-lg"
+              title="Logout"
+            >
+              Logout
+            </button>
           </div>
         </div>
-
-        {/* Cart */}
-        <button
-          className="flex h-11 w-11 items-center justify-center cursor-pointer"
-          aria-label="Cart"
-          title="Cart"
-          onClick={() => setShowError(true)}
-        >
-          <img src="/icons/cart.svg" alt="Cart" className="h-8 w-8" />
-        </button>
-        {showError && <MockError />}
       </div>
     </header>
   );

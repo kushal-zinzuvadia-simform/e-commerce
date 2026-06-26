@@ -1,12 +1,13 @@
 type FooterProps = {
   onFocusSearch: () => void;
+  showActions: boolean;
 };
 
-export const Footer = ({ onFocusSearch }: FooterProps) => {
+export const Footer = ({ onFocusSearch, showActions }: FooterProps) => {
   return (
     <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto max-w-7xl px-6 py-10">
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="flex gap-8 justify-evenly">
           <div>
             <h3 className="text-sm font-semibold text-slate-900 mb-3">
               ShopSphere
@@ -54,21 +55,23 @@ export const Footer = ({ onFocusSearch }: FooterProps) => {
           </div>
 
           {/* Quick Actions */}
-          <div>
-            <h3 className="text-sm font-semibold text-slate-900 mb-3">
-              Quick Actions
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <button
-                  onClick={onFocusSearch}
-                  className="text-sm font-medium text-slate-700 underline-offset-4 hover:underline"
-                >
-                  Focus on search
-                </button>
-              </li>
-            </ul>
-          </div>
+          {showActions && (
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900 mb-3">
+                Quick Actions
+              </h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <button
+                    onClick={onFocusSearch}
+                    className="text-sm font-medium text-slate-700 underline-offset-4 hover:underline"
+                  >
+                    Focus on search
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </footer>

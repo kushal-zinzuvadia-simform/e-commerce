@@ -1,13 +1,18 @@
+import { Link } from 'react-router-dom';
+
 import { FALLBACK_IMAGE_URL, getCleanImageUrl } from '../../utils/imageUtils';
 import { formatCurrency } from '../../utils/priceUtils';
 import type { Product } from '../../types/Product';
 
 interface ProductCardProps {
   product: Product;
-  onClick?: () => void;
+  priority?: boolean;
 }
 
-export const ProductCard = ({ product, onClick }: ProductCardProps) => {
+export const ProductCard = ({
+  product,
+  priority = false,
+}: ProductCardProps) => {
   const { id, title, description, price, images } = product;
 
   const imageUrl = getCleanImageUrl(images?.[0]);
@@ -17,14 +22,9 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
   const stockCount = (id % 5) + 1;
 
   return (
-    <article
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onClick?.();
-      }}
+    <Link
+      to={`/products/${id}`}
       className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:border-slate-400 hover:shadow-[0_12px_40px_rgba(15,23,42,0.08)]"
-      role="button"
-      tabIndex={0}
       aria-label={`View details for ${title}`}
     >
       {/* Image */}
@@ -32,9 +32,12 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
         <img
           src={imageUrl}
           alt={title}
-          loading="lazy"
+          loading={priority ? undefined : 'lazy'}
+          fetchPriority={priority ? 'high' : undefined}
           onError={(e) => {
-            (e.target as HTMLImageElement).src = FALLBACK_IMAGE_URL;
+            if (e.target instanceof HTMLImageElement) {
+              e.target.src = FALLBACK_IMAGE_URL;
+            }
           }}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
@@ -79,6 +82,6 @@ export const ProductCard = ({ product, onClick }: ProductCardProps) => {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };
