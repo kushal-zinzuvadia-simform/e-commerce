@@ -31,7 +31,7 @@ import { ProfileImageUpload } from '../components/auth/ProfileImageUpload';
 import { PasswordField } from '../components/auth/PasswordField';
 import { saveUsers, userExists, getUsers } from '../utils/userStorage';
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
   const { profileImage, imageError, handleImageUpload } = useProfileImage();
   const navigate = useNavigate();
 
@@ -305,3 +305,4 @@ export const RegisterPage = () => {
     </Paper>
   );
 };
+export default RegisterPage;

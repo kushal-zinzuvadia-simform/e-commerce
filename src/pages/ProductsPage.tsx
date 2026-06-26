@@ -10,7 +10,7 @@ import { SectionErrorFallback } from '../components/ErrorBoundary/SectionErrorFa
 import { useProducts } from '../hooks/useProducts';
 import { useFilterParams } from '../hooks/useFilterParams';
 
-export const ProductsPage = () => {
+const ProductsPage = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { products, loading, error, refetch } = useProducts();
   const {
@@ -163,3 +163,5 @@ export const ProductsPage = () => {
     </ErrorBoundary>
   );
 };
+
+export default ProductsPage;

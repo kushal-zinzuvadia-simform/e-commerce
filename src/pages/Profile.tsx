@@ -14,7 +14,7 @@ import { getCurrentUser, logout } from '../utils/auth';
 import { INDIAN_STATES } from '../data/stateData';
 import { ProfileField } from '../components/auth/ProfileField';
 
-export const Profile = () => {
+const Profile = () => {
   const navigate = useNavigate();
 
   const currentUser = getCurrentUser();
@@ -146,3 +146,5 @@ export const Profile = () => {
     </Paper>
   );
 };
+
+export default Profile;

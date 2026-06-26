@@ -20,7 +20,7 @@ import { loginSchema, type LoginSchema } from '../types/loginSchema';
 import { getUsers } from '../utils/userStorage';
 import { setCurrentUser } from '../utils/auth';
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -134,3 +134,5 @@ export const LoginPage = () => {
     </Paper>
   );
 };
+
+export default LoginPage;

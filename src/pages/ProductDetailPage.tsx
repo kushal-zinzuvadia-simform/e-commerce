@@ -9,7 +9,7 @@ import { ErrorBoundary } from '../components/ErrorBoundary/ErrorBoundary';
 import { PageErrorFallback } from '../components/ErrorBoundary/PageErrorFallback';
 import type { Product } from '../types/Product';
 
-export const ProductDetailPage = () => {
+const ProductDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
@@ -74,3 +74,5 @@ export const ProductDetailPage = () => {
     </ErrorBoundary>
   );
 };
+
+export default ProductDetailPage;
