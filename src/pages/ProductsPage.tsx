@@ -9,6 +9,7 @@ import { PageErrorFallback } from '../components/ErrorBoundary/PageErrorFallback
 import { SectionErrorFallback } from '../components/ErrorBoundary/SectionErrorFallback';
 import { useProducts } from '../hooks/useProducts';
 import { useFilterParams } from '../hooks/useFilterParams';
+import { PriceRange, SortOption } from '../types/Filter';
 
 const ProductsPage = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -50,13 +51,13 @@ const ProductsPage = () => {
     if (price) {
       result = result.filter((p) => {
         switch (price) {
-          case 'under_50':
+          case PriceRange.Under50:
             return p.price < 50;
-          case '50_100':
+          case PriceRange.Range50to100:
             return p.price >= 50 && p.price < 100;
-          case '100_200':
+          case PriceRange.Range100to200:
             return p.price >= 100 && p.price < 200;
-          case 'above_200':
+          case PriceRange.Above200:
             return p.price >= 200;
           default:
             return true;
@@ -65,13 +66,13 @@ const ProductsPage = () => {
     }
 
     switch (sort) {
-      case 'price_asc':
+      case SortOption.PriceAsc:
         result.sort((a, b) => a.price - b.price);
         break;
-      case 'price_desc':
+      case SortOption.PriceDesc:
         result.sort((a, b) => b.price - a.price);
         break;
-      case 'latest':
+      case SortOption.Latest:
         result.sort((a, b) => {
           const aDate = a.creationAt ? new Date(a.creationAt).getTime() : 0;
           const bDate = b.creationAt ? new Date(b.creationAt).getTime() : 0;

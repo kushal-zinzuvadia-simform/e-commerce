@@ -1,4 +1,17 @@
-import type { PRICE_OPTIONS, SORT_OPTIONS } from '../data/filterOptions';
+export const PriceRange = {
+  Under50: 'under_50',
+  Range50to100: '50_100',
+  Range100to200: '100_200',
+  Above200: 'above_200',
+} as const;
 
-export type SortOption = (typeof SORT_OPTIONS)[number]['value'];
-export type PriceRange = (typeof PRICE_OPTIONS)[number]['value'] | '';
+export type PriceRange = (typeof PriceRange)[keyof typeof PriceRange];
+
+export const SortOption = {
+  Relevance: 'relevance',
+  PriceAsc: 'price_asc',
+  PriceDesc: 'price_desc',
+  Latest: 'latest',
+} as const;
+
+export type SortOption = (typeof SortOption)[keyof typeof SortOption];
