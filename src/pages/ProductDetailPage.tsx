@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 import { Footer } from '../components/Footer/Footer';
 import { Header } from '../components/Header/Header';
@@ -14,6 +14,7 @@ const ProductDetailPage = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const numericId = Number(id);
+  const isValidId = !!id && Number.isInteger(numericId) && numericId > 0;
 
   const {
     data: product,
@@ -23,17 +24,15 @@ const ProductDetailPage = () => {
   } = useProduct(numericId);
 
   useEffect(() => {
-    // Redirect immediately for non-numeric ids
-    if (!id || !Number.isInteger(numericId) || numericId <= 0) {
-      navigate('/not-found', { replace: true });
-      return;
-    }
-
     // If query finishes and product is null, or if there's an error fetching
     if (error || (isFetched && product === null)) {
       navigate('/not-found', { replace: true });
     }
-  }, [id, numericId, navigate, isFetched, product, error]);
+  }, [navigate, isFetched, product, error]);
+
+  if (!isValidId) {
+    return <Navigate to="/not-found" replace />;
+  }
 
   return (
     <ErrorBoundary
