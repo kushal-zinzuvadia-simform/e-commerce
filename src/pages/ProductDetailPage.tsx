@@ -23,8 +23,6 @@ const ProductDetailPage = () => {
   } = useProduct(numericId);
 
   useEffect(() => {
-    const numericId = Number(id);
-
     // Redirect immediately for non-numeric ids
     if (!id || !Number.isInteger(numericId) || numericId <= 0) {
       navigate('/not-found', { replace: true });
