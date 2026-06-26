@@ -158,7 +158,10 @@ const ProductsPage = () => {
           </div>
         </main>
 
-        <Footer onFocusSearch={() => searchRef.current?.focus()} />
+        <Footer
+          onFocusSearch={() => searchRef.current?.focus()}
+          showActions={true}
+        />
       </div>
     </ErrorBoundary>
   );

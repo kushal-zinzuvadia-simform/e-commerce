@@ -69,7 +69,10 @@ const ProductDetailPage = () => {
           ) : null}
         </main>
 
-        <Footer onFocusSearch={() => searchRef.current?.focus()} />
+        <Footer
+          onFocusSearch={() => searchRef.current?.focus()}
+          showActions={false}
+        />
       </div>
     </ErrorBoundary>
   );
