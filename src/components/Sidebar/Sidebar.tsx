@@ -1,12 +1,16 @@
 import { PRICE_OPTIONS, SORT_OPTIONS } from '../../data/filterOptions';
-import type { PriceRange, SortOption } from '../../types/Filter';
+import type {
+  NullablePriceRange,
+  PriceRange,
+  SortOption,
+} from '../../types/Filter';
 
 interface SidebarProps {
   sort: SortOption;
   onSortChange: (value: SortOption) => void;
   selectedCategories: Array<string>;
   onCategoryToggle: (name: string) => void;
-  price: PriceRange;
+  price: NullablePriceRange;
   onPriceChange: (value: PriceRange) => void;
   onClearAll: () => void;
   availableCategories: string[];
