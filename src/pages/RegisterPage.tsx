@@ -296,7 +296,7 @@ export const RegisterPage = () => {
         </Button>
 
         <Typography variant="body2" align="center" color="text.secondary">
-          Already a member?{' '}
+          Already a member?
           <Link component={RouterLink} to="/login" underline="hover">
             Login here
           </Link>
