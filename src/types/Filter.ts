@@ -6,6 +6,7 @@ export const PriceRange = {
 } as const;
 
 export type PriceRange = (typeof PriceRange)[keyof typeof PriceRange];
+export type NullablePriceRange = PriceRange | null;
 
 export const SortOption = {
   Relevance: 'relevance',

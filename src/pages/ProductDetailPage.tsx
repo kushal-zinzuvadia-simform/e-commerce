@@ -1,54 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
-import { fetchProductById } from '../api/productApi';
 import { Footer } from '../components/Footer/Footer';
 import { Header } from '../components/Header/Header';
 import { ProductDetail } from '../components/ProductDetails/ProductDetail';
 import { ErrorBoundary } from '../components/ErrorBoundary/ErrorBoundary';
 import { PageErrorFallback } from '../components/ErrorBoundary/PageErrorFallback';
-import type { Product } from '../types/Product';
+import { useProduct } from '../hooks/useProduct';
 
 const ProductDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
   const searchRef = useRef<HTMLInputElement | null>(null);
 
+  const numericId = Number(id);
+  const isValidId = !!id && Number.isInteger(numericId) && numericId > 0;
+
+  const {
+    data: product,
+    isLoading: loading,
+    error,
+    isFetched,
+  } = useProduct(numericId);
+
   useEffect(() => {
-    const numericId = Number(id);
-
-    if (!id || !Number.isInteger(numericId) || numericId <= 0) {
+    // If query finishes and product is null, or if there's an error fetching
+    if (error || (isFetched && product === null)) {
       navigate('/not-found', { replace: true });
-      return;
     }
+  }, [navigate, isFetched, product, error]);
 
-    setProduct(null);
-    setLoading(true);
-
-    const controller = new AbortController();
-
-    const load = async () => {
-      try {
-        const data = await fetchProductById(numericId, controller.signal);
-
-        if (data === null) {
-          navigate('/not-found', { replace: true });
-        } else {
-          setProduct(data);
-        }
-      } catch (err) {
-        if (err instanceof DOMException && err.name === 'AbortError') return;
-        navigate('/not-found', { replace: true });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    load();
-    return () => controller.abort();
-  }, [id, navigate]);
+  if (!isValidId) {
+    return <Navigate to="/not-found" replace />;
+  }
 
   return (
     <ErrorBoundary
