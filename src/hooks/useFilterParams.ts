@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import type { PriceRange, SortOption } from '../types/Filter';
+import type { NullablePriceRange, PriceRange, SortOption } from '../types/Filter';
 
 export const useFilterParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -54,7 +54,7 @@ export const useFilterParams = () => {
   );
 
   const setPrice = useCallback(
-    (value: PriceRange) => {
+    (value: NullablePriceRange) => {
       setSearchParams((prev) => {
         const next = new URLSearchParams(prev);
         if (value) next.set('price', value);
