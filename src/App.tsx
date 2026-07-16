@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PublicRoute } from './routes/PublicRoute';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { CartProvider } from './context/CartContext';
 
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
@@ -24,27 +25,29 @@ const queryClient = new QueryClient({
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/products" replace />} />
+      <CartProvider>
+        <BrowserRouter>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Navigate to="/products" replace />} />
 
-            <Route element={<PublicRoute />}>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<RegisterPage />} />
-            </Route>
+              <Route element={<PublicRoute />}>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<RegisterPage />} />
+              </Route>
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/:id" element={<ProductDetailPage />} />
-              <Route path="/profile" element={<Profile />} />
-            </Route>
+              <Route element={<ProtectedRoute />}>
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/products/:id" element={<ProductDetailPage />} />
+                <Route path="/profile" element={<Profile />} />
+              </Route>
 
-            <Route path="/not-found" element={<NotFoundPage />} />
-            <Route path="*" element={<Navigate to="/not-found" replace />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+              <Route path="/not-found" element={<NotFoundPage />} />
+              <Route path="*" element={<Navigate to="/not-found" replace />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </CartProvider>
     </QueryClientProvider>
   );
 }
